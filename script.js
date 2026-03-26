@@ -5,6 +5,9 @@ const taskList = document.getElementById("taskList");
 const filterButtons = document.querySelectorAll(".filter-btn");
 const progressText = document.getElementById("progressText");
 const progressFill = document.getElementById("progressFill");
+const goalInput = document.getElementById("goalInput");
+const addGoalBtn = document.getElementById("addGoalBtn");
+const goalList = document.getElementById("goalList");
 
 let filtroAtual = "todas";
 
@@ -134,4 +137,27 @@ filterButtons.forEach(function(button) {
 
     renderizarTarefas();
   });
+});
+
+function adicionarMeta() {
+  const textoDaMeta = goalInput.value.trim();
+
+  if (textoDaMeta === "") {
+    alert("Digite uma meta.");
+    return;
+  }
+
+  const li = document.createElement("li");
+  li.textContent = textoDaMeta;
+
+  goalList.appendChild(li);
+
+  goalInput.value = "";
+}
+
+addGoalBtn.addEventListener("click", adicionarMeta);
+goalInput.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    adicionarMeta();
+  }
 });
