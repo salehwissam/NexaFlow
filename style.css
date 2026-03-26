@@ -236,3 +236,14 @@ body {
 #goalList button:hover {
   background-color: #b91c1c;
 }
+
+#notesArea {
+  width: 100%;
+  min-height: 150px;
+  resize: none;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 12px;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+}
