@@ -186,3 +186,40 @@ body {
   background-color: #22c55e;
   transition: 0.3s;
 }
+
+.goal-area {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.goal-area input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.goal-area button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.goal-area button:hover {
+  background-color: #1d4ed8;
+}
+
+#goalList li {
+  background-color: #f1f5f9;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
