@@ -3,6 +3,13 @@ const taskInput = document.getElementById("taskInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
 
+let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+
+function salvarTarefas() {
+  localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}
+
+
 function atualizarRelogio() {
   const agora = new Date();
 
@@ -25,27 +32,15 @@ function adicionarTarefa() {
     return;
   }
 
-  const li = document.createElement("li");
+  const novaTarefa = {
+    id: Date.now(),
+    texto: textoDaTarefa,
+    concluida: false
+  };
 
-const span = document.createElement("span");
-span.textContent = textoDaTarefa;
-
-const deleteBtn = document.createElement("button");
-deleteBtn.textContent = "Excluir";
-
-deleteBtn.addEventListener("click", function(event) {
-  event.stopPropagation();
-  li.remove();
-});
-
-span.addEventListener("click", function() {
-  li.classList.toggle("completed");
-});
-
-li.appendChild(span);
-li.appendChild(deleteBtn);
-
-  taskList.appendChild(li);
+  tarefas.push(novaTarefa);
+  salvarTarefas();
+  renderizarTarefas();
 
   taskInput.value = "";
 }
@@ -57,3 +52,45 @@ taskInput.addEventListener("keypress", function(event) {
     adicionarTarefa();
   }
 });
+
+function renderizarTarefas() {
+  taskList.innerHTML = "";
+
+  tarefas.forEach(function(tarefa) {
+    const li = document.createElement("li");
+
+    const span = document.createElement("span");
+    span.textContent = tarefa.texto;
+
+    if (tarefa.concluida) {
+      li.classList.add("completed");
+    }
+
+    span.addEventListener("click", function() {
+      tarefa.concluida = !tarefa.concluida;
+      salvarTarefas();
+      renderizarTarefas();
+    });
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Excluir";
+
+    deleteBtn.addEventListener("click", function(event) {
+      event.stopPropagation();
+
+      tarefas = tarefas.filter(function(item) {
+        return item.id !== tarefa.id;
+      });
+
+      salvarTarefas();
+      renderizarTarefas();
+    });
+
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+
+    taskList.appendChild(li);
+  });
+}
+
+renderizarTarefas();
