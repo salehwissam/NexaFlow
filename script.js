@@ -12,9 +12,14 @@ const goalList = document.getElementById("goalList");
 let filtroAtual = "todas";
 
 let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+let metas = JSON.parse(localStorage.getItem("metas")) || [];
 
 function salvarTarefas() {
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}
+
+function salvarMetas() {
+  localStorage.setItem("metas", JSON.stringify(metas));
 }
 
 function atualizarProgresso() {
@@ -147,27 +152,15 @@ function adicionarMeta() {
     return;
   }
 
-  const li = document.createElement("li");
+  const novaMeta = {
+    id: Date.now(),
+    texto: textoDaMeta,
+    concluida: false
+  };
 
-  const span = document.createElement("span");
-  span.textContent = textoDaMeta;
-
-  span.addEventListener("click", function() {
-    li.classList.toggle("completed");
-  });
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "Excluir";
-
-  deleteBtn.addEventListener("click", function(event) {
-    event.stopPropagation();
-    li.remove();
-  });
-
-  li.appendChild(span);
-  li.appendChild(deleteBtn);
-
-  goalList.appendChild(li);
+  metas.push(novaMeta);
+  salvarMetas();
+  renderizarMetas();
 
   goalInput.value = "";
 }
@@ -179,3 +172,45 @@ goalInput.addEventListener("keypress", function(event) {
     adicionarMeta();
   }
 });
+
+function renderizarMetas() {
+  goalList.innerHTML = "";
+
+  metas.forEach(function(meta) {
+    const li = document.createElement("li");
+
+    const span = document.createElement("span");
+    span.textContent = meta.texto;
+
+    if (meta.concluida) {
+      li.classList.add("completed");
+    }
+
+    span.addEventListener("click", function() {
+      meta.concluida = !meta.concluida;
+      salvarMetas();
+      renderizarMetas();
+    });
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Excluir";
+
+    deleteBtn.addEventListener("click", function(event) {
+      event.stopPropagation();
+
+      metas = metas.filter(function(item) {
+        return item.id !== meta.id;
+      });
+
+      salvarMetas();
+      renderizarMetas();
+    });
+
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+
+    goalList.appendChild(li);
+  });
+}
+
+renderizarMetas();
