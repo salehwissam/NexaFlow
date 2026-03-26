@@ -34,3 +34,9 @@ function adicionarTarefa() {
 }
 
 addTaskBtn.addEventListener("click", adicionarTarefa);
+
+taskInput.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    adicionarTarefa();
+  }
+});
