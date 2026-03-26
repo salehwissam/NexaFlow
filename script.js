@@ -3,6 +3,9 @@ const taskInput = document.getElementById("taskInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
 const filterButtons = document.querySelectorAll(".filter-btn");
+const progressText = document.getElementById("progressText");
+const progressFill = document.getElementById("progressFill");
+
 let filtroAtual = "todas";
 
 let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
@@ -11,6 +14,20 @@ function salvarTarefas() {
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
 }
 
+function atualizarProgresso() {
+  const total = tarefas.length;
+  const concluidas = tarefas.filter(t => t.concluida).length;
+
+  progressText.textContent = `${concluidas} de ${total} tarefas concluídas`;
+
+  let porcentagem = 0;
+
+  if (total > 0) {
+    porcentagem = (concluidas / total) * 100;
+  }
+
+  progressFill.style.width = `${porcentagem}%`;
+}
 
 function atualizarRelogio() {
   const agora = new Date();
@@ -23,7 +40,6 @@ function atualizarRelogio() {
 }
 
 setInterval(atualizarRelogio, 1000);
-
 atualizarRelogio();
 
 function adicionarTarefa() {
@@ -60,15 +76,15 @@ function renderizarTarefas() {
 
   let tarefasFiltradas = tarefas;
 
-if (filtroAtual === "pendentes") {
-  tarefasFiltradas = tarefas.filter(t => !t.concluida);
-}
+  if (filtroAtual === "pendentes") {
+    tarefasFiltradas = tarefas.filter(t => !t.concluida);
+  }
 
-if (filtroAtual === "concluidas") {
-  tarefasFiltradas = tarefas.filter(t => t.concluida);
-}
+  if (filtroAtual === "concluidas") {
+    tarefasFiltradas = tarefas.filter(t => t.concluida);
+  }
 
-tarefasFiltradas.forEach(function(tarefa) {
+  tarefasFiltradas.forEach(function(tarefa) {
     const li = document.createElement("li");
 
     const span = document.createElement("span");
@@ -103,13 +119,14 @@ tarefasFiltradas.forEach(function(tarefa) {
 
     taskList.appendChild(li);
   });
+
+  atualizarProgresso();
 }
 
 renderizarTarefas();
 
 filterButtons.forEach(function(button) {
   button.addEventListener("click", function() {
-
     filterButtons.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
 

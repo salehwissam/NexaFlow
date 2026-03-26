@@ -23,12 +23,19 @@
 
     <section class="card">
   <h2>Tarefas</h2>
-  
   <div class="filters">
   <button data-filter="todas" class="filter-btn active">Todas</button>
   <button data-filter="pendentes" class="filter-btn">Pendentes</button>
   <button data-filter="concluidas" class="filter-btn">Concluídas</button>
-</div>
+  </div>
+
+  <div class="progress-area">
+  <p id="progressText">0 de 0 tarefas concluídas</p>
+
+  <div class="progress-bar">
+    <div id="progressFill"></div>
+  </div>
+  </div>
 
   <div class="task-area">
     <input type="text" id="taskInput" placeholder="Digite uma tarefa">
