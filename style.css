@@ -93,3 +93,36 @@ body {
     width: 100%;
   }
 }
+
+.task-area {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.task-area input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.task-area button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.task-area button:hover {
+  background-color: #1d4ed8;
+}
+
+#taskList li {
+  background-color: #f1f5f9;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
