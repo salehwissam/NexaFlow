@@ -26,11 +26,24 @@ function adicionarTarefa() {
   }
 
   const li = document.createElement("li");
-  li.textContent = textoDaTarefa;
-  
-  li.addEventListener("click", function() {
+
+const span = document.createElement("span");
+span.textContent = textoDaTarefa;
+
+const deleteBtn = document.createElement("button");
+deleteBtn.textContent = "Excluir";
+
+deleteBtn.addEventListener("click", function(event) {
+  event.stopPropagation();
+  li.remove();
+});
+
+span.addEventListener("click", function() {
   li.classList.toggle("completed");
 });
+
+li.appendChild(span);
+li.appendChild(deleteBtn);
 
   taskList.appendChild(li);
 

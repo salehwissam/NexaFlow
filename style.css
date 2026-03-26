@@ -131,3 +131,23 @@ body {
   text-decoration: line-through;
   opacity: 0.6;
 }
+
+#taskList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+#taskList button {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#taskList button:hover {
+  background-color: #b91c1c;
+}
