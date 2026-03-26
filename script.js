@@ -1,0 +1,1 @@
+console.log("NexaFlow iniciado com sucesso.");
