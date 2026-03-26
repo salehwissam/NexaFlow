@@ -148,7 +148,24 @@ function adicionarMeta() {
   }
 
   const li = document.createElement("li");
-  li.textContent = textoDaMeta;
+
+  const span = document.createElement("span");
+  span.textContent = textoDaMeta;
+
+  span.addEventListener("click", function() {
+    li.classList.toggle("completed");
+  });
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Excluir";
+
+  deleteBtn.addEventListener("click", function(event) {
+    event.stopPropagation();
+    li.remove();
+  });
+
+  li.appendChild(span);
+  li.appendChild(deleteBtn);
 
   goalList.appendChild(li);
 
@@ -156,6 +173,7 @@ function adicionarMeta() {
 }
 
 addGoalBtn.addEventListener("click", adicionarMeta);
+
 goalInput.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     adicionarMeta();

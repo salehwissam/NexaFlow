@@ -223,3 +223,16 @@ body {
   align-items: center;
   gap: 10px;
 }
+
+#goalList button {
+  background-color: #dc2626;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#goalList button:hover {
+  background-color: #b91c1c;
+}
