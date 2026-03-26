@@ -2,6 +2,8 @@ const clock = document.getElementById("clock");
 const taskInput = document.getElementById("taskInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
+const filterButtons = document.querySelectorAll(".filter-btn");
+let filtroAtual = "todas";
 
 let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 
@@ -56,7 +58,17 @@ taskInput.addEventListener("keypress", function(event) {
 function renderizarTarefas() {
   taskList.innerHTML = "";
 
-  tarefas.forEach(function(tarefa) {
+  let tarefasFiltradas = tarefas;
+
+if (filtroAtual === "pendentes") {
+  tarefasFiltradas = tarefas.filter(t => !t.concluida);
+}
+
+if (filtroAtual === "concluidas") {
+  tarefasFiltradas = tarefas.filter(t => t.concluida);
+}
+
+tarefasFiltradas.forEach(function(tarefa) {
     const li = document.createElement("li");
 
     const span = document.createElement("span");
@@ -94,3 +106,15 @@ function renderizarTarefas() {
 }
 
 renderizarTarefas();
+
+filterButtons.forEach(function(button) {
+  button.addEventListener("click", function() {
+
+    filterButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    filtroAtual = button.dataset.filter;
+
+    renderizarTarefas();
+  });
+});

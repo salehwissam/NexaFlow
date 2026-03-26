@@ -151,3 +151,22 @@ body {
 #taskList button:hover {
   background-color: #b91c1c;
 }
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filter-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #e5e7eb;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background-color: #2563eb;
+  color: white;
+}
