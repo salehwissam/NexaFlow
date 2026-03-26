@@ -126,3 +126,8 @@ body {
   border-radius: 8px;
   margin-bottom: 10px;
 }
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}

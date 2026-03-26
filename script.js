@@ -27,6 +27,10 @@ function adicionarTarefa() {
 
   const li = document.createElement("li");
   li.textContent = textoDaTarefa;
+  
+  li.addEventListener("click", function() {
+  li.classList.toggle("completed");
+});
 
   taskList.appendChild(li);
 
