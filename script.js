@@ -9,6 +9,11 @@ const goalInput = document.getElementById("goalInput");
 const addGoalBtn = document.getElementById("addGoalBtn");
 const goalList = document.getElementById("goalList");
 const notesArea = document.getElementById("notesArea");
+const pomodoroTimer = document.getElementById("pomodoroTimer");
+const startPomodoro = document.getElementById("startPomodoro");
+
+let tempoRestante = 25 * 60; 
+let intervaloPomodoro = null;
 
 let filtroAtual = "todas";
 
@@ -222,3 +227,28 @@ renderizarMetas();
 notesArea.addEventListener("input", function() {
   localStorage.setItem("notas", notesArea.value);
 });
+
+function atualizarPomodoro() {
+  const minutos = Math.floor(tempoRestante / 60);
+  const segundos = tempoRestante % 60;
+
+  pomodoroTimer.textContent =
+    `${String(minutos).padStart(2, "0")}:${String(segundos).padStart(2, "0")}`;
+}
+
+function iniciarPomodoro() {
+  if (intervaloPomodoro !== null) return;
+
+  intervaloPomodoro = setInterval(function() {
+    if (tempoRestante > 0) {
+      tempoRestante--;
+      atualizarPomodoro();
+    } else {
+      clearInterval(intervaloPomodoro);
+    }
+  }, 1000);
+}
+
+startPomodoro.addEventListener("click", iniciarPomodoro);
+
+atualizarPomodoro();
