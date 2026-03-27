@@ -8,11 +8,13 @@ const progressFill = document.getElementById("progressFill");
 const goalInput = document.getElementById("goalInput");
 const addGoalBtn = document.getElementById("addGoalBtn");
 const goalList = document.getElementById("goalList");
+const notesArea = document.getElementById("notesArea");
 
 let filtroAtual = "todas";
 
 let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 let metas = JSON.parse(localStorage.getItem("metas")) || [];
+let notas = localStorage.getItem("notas") || "";
 
 function salvarTarefas() {
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
@@ -78,6 +80,8 @@ taskInput.addEventListener("keypress", function(event) {
     adicionarTarefa();
   }
 });
+
+notesArea.value = notas;
 
 function renderizarTarefas() {
   taskList.innerHTML = "";
@@ -214,3 +218,7 @@ function renderizarMetas() {
 }
 
 renderizarMetas();
+
+notesArea.addEventListener("input", function() {
+  localStorage.setItem("notas", notesArea.value);
+});
