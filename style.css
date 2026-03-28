@@ -247,3 +247,22 @@ body {
   font-size: 1rem;
   font-family: Arial, sans-serif;
 }
+
+.pomodoro-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pomodoro-actions button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.pomodoro-actions button:hover {
+  background-color: #1d4ed8;
+}

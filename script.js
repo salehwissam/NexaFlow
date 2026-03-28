@@ -11,6 +11,8 @@ const goalList = document.getElementById("goalList");
 const notesArea = document.getElementById("notesArea");
 const pomodoroTimer = document.getElementById("pomodoroTimer");
 const startPomodoro = document.getElementById("startPomodoro");
+const pausePomodoro = document.getElementById("pausePomodoro");
+const resetPomodoro = document.getElementById("resetPomodoro");
 
 let tempoRestante = 25 * 60; 
 let intervaloPomodoro = null;
@@ -252,3 +254,18 @@ function iniciarPomodoro() {
 startPomodoro.addEventListener("click", iniciarPomodoro);
 
 atualizarPomodoro();
+
+function pausarPomodoro() {
+  clearInterval(intervaloPomodoro);
+  intervaloPomodoro = null;
+}
+
+function resetarPomodoro() {
+  clearInterval(intervaloPomodoro);
+  intervaloPomodoro = null;
+  tempoRestante = 25 * 60;
+  atualizarPomodoro();
+}
+
+pausePomodoro.addEventListener("click", pausarPomodoro);
+resetPomodoro.addEventListener("click", resetarPomodoro);
