@@ -12,69 +12,73 @@
       <h1>NexaFlow</h1>
       <p>Painel pessoal de foco e produtividade</p>
     </div>
-    <button class="botao-topo">Tema</button>
+    <button class="botao-topo" id="themeToggle">🌙</button>
   </header>
 
   <main class="dashboard">
+  <div class="dashboard-column">
     <section class="card">
       <h2>Relógio</h2>
       <div id="clock" class="clock-box">00:00:00</div>
     </section>
 
     <section class="card">
-  <h2>Tarefas</h2>
-  <div class="filters">
-  <button data-filter="todas" class="filter-btn active">Todas</button>
-  <button data-filter="pendentes" class="filter-btn">Pendentes</button>
-  <button data-filter="concluidas" class="filter-btn">Concluídas</button>
-  </div>
-
-  <div class="progress-area">
-  <p id="progressText">0 de 0 tarefas concluídas</p>
-
-  <div class="progress-bar">
-    <div id="progressFill"></div>
-  </div>
-  </div>
-
-  <div class="task-area">
-    <input type="text" id="taskInput" placeholder="Digite uma tarefa">
-    <button id="addTaskBtn">Adicionar</button>
-  </div>
-
-  <ul id="taskList"></ul>
-    </section>
-
-    <section class="card">
       <h2>Pomodoro</h2>
       <div class="pomodoro-box">
-  <h3 id="pomodoroTimer">25:00</h3>
+        <h3 id="pomodoroTimer">25:00</h3>
 
-  <div class="pomodoro-actions">
-    <button id="startPomodoro">Iniciar</button>
-    <button id="pausePomodoro">Pausar</button>
-    <button id="resetPomodoro">Resetar</button>
-  </div>
-</div>
+        <div class="pomodoro-actions">
+          <button id="startPomodoro">Iniciar</button>
+          <button id="pausePomodoro">Pausar</button>
+          <button id="resetPomodoro">Resetar</button>
+        </div>
+      </div>
     </section>
 
     <section class="card">
-  <h2>Notas rápidas</h2>
+      <h2>Metas do dia</h2>
 
-  <textarea id="notesArea" placeholder="Escreva suas anotações aqui..."></textarea>
-     </section>
+      <div class="goal-area">
+        <input type="text" id="goalInput" placeholder="Digite uma meta do dia">
+        <button id="addGoalBtn">Adicionar</button>
+      </div>
 
-    <section class="card">
-  <h2>Metas do dia</h2>
-
-  <div class="goal-area">
-    <input type="text" id="goalInput" placeholder="Digite uma meta do dia">
-    <button id="addGoalBtn">Adicionar</button>
+      <ul id="goalList"></ul>
+    </section>
   </div>
 
-  <ul id="goalList"></ul>
-</section>
-  </main>
+  <div class="dashboard-column">
+    <section class="card">
+      <h2>Tarefas</h2>
+      <div class="filters">
+        <button data-filter="todas" class="filter-btn active">Todas</button>
+        <button data-filter="pendentes" class="filter-btn">Pendentes</button>
+        <button data-filter="concluidas" class="filter-btn">Concluídas</button>
+      </div>
+
+      <div class="progress-area">
+        <p id="progressText">0 de 0 tarefas concluídas</p>
+
+        <div class="progress-bar">
+          <div id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="task-area">
+        <input type="text" id="taskInput" placeholder="Digite uma tarefa">
+        <button id="addTaskBtn">Adicionar</button>
+      </div>
+
+      <ul id="taskList"></ul>
+    </section>
+
+    <section class="card">
+      <h2>Notas rápidas</h2>
+
+      <textarea id="notesArea" placeholder="Escreva suas anotações aqui..."></textarea>
+    </section>
+  </div>
+</main>
 
   <script src="script.js"></script>
 </body>

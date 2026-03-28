@@ -13,6 +13,7 @@ const pomodoroTimer = document.getElementById("pomodoroTimer");
 const startPomodoro = document.getElementById("startPomodoro");
 const pausePomodoro = document.getElementById("pausePomodoro");
 const resetPomodoro = document.getElementById("resetPomodoro");
+const temaBtn = document.getElementById("themeToggle");
 
 let tempoRestante = 25 * 60; 
 let intervaloPomodoro = null;
@@ -22,6 +23,14 @@ let filtroAtual = "todas";
 let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 let metas = JSON.parse(localStorage.getItem("metas")) || [];
 let notas = localStorage.getItem("notas") || "";
+let temaSalvo = localStorage.getItem("tema") || "claro";
+
+if (temaSalvo === "escuro") {
+  document.body.classList.add("dark-mode");
+  temaBtn.textContent = "☀️";
+} else {
+  temaBtn.textContent = "🌙";
+}
 
 function salvarTarefas() {
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
@@ -269,3 +278,15 @@ function resetarPomodoro() {
 
 pausePomodoro.addEventListener("click", pausarPomodoro);
 resetPomodoro.addEventListener("click", resetarPomodoro);
+
+temaBtn.addEventListener("click", function() {
+  document.body.classList.toggle("dark-mode");
+
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("tema", "escuro");
+    temaBtn.textContent = "☀️";
+  } else {
+    localStorage.setItem("tema", "claro");
+    temaBtn.textContent = "🌙";
+  }
+});
