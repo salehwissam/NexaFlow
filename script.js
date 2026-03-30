@@ -14,9 +14,20 @@ const startPomodoro = document.getElementById("startPomodoro");
 const pausePomodoro = document.getElementById("pausePomodoro");
 const resetPomodoro = document.getElementById("resetPomodoro");
 const temaBtn = document.getElementById("themeToggle");
+const pomodoroStatus = document.getElementById("pomodoroStatus");
+const pomodoroCycles = document.getElementById("pomodoroCycles");
+const modeButtons = document.querySelectorAll(".mode-btn");
 
-let tempoRestante = 25 * 60; 
+let modoAtual = "foco";
+let tempoRestante = 25 * 60;
 let intervaloPomodoro = null;
+let ciclosConcluidos = 0;
+
+const temposPomodoro = {
+  foco: 25 * 60,
+  curto: 5 * 60,
+  longo: 15 * 60
+};
 
 let filtroAtual = "todas";
 
@@ -256,6 +267,12 @@ function iniciarPomodoro() {
       atualizarPomodoro();
     } else {
       clearInterval(intervaloPomodoro);
+      intervaloPomodoro = null;
+
+      if (modoAtual === "foco") {
+        ciclosConcluidos++;
+        pomodoroCycles.textContent = `Ciclos concluídos: ${ciclosConcluidos}`;
+      }
     }
   }, 1000);
 }
@@ -263,6 +280,8 @@ function iniciarPomodoro() {
 startPomodoro.addEventListener("click", iniciarPomodoro);
 
 atualizarPomodoro();
+pomodoroCycles.textContent = `Ciclos concluídos: ${ciclosConcluidos}`;
+definirModoPomodoro("foco");
 
 function pausarPomodoro() {
   clearInterval(intervaloPomodoro);
@@ -272,7 +291,7 @@ function pausarPomodoro() {
 function resetarPomodoro() {
   clearInterval(intervaloPomodoro);
   intervaloPomodoro = null;
-  tempoRestante = 25 * 60;
+  tempoRestante = temposPomodoro[modoAtual];
   atualizarPomodoro();
 }
 
@@ -289,4 +308,39 @@ temaBtn.addEventListener("click", function() {
     localStorage.setItem("tema", "claro");
     temaBtn.textContent = "🌙";
   }
+});
+
+function definirModoPomodoro(modo) {
+  modoAtual = modo;
+  tempoRestante = temposPomodoro[modo];
+  atualizarPomodoro();
+
+  if (modo === "foco") {
+    pomodoroStatus.textContent = "Modo atual: Foco";
+  }
+
+  if (modo === "curto") {
+    pomodoroStatus.textContent = "Modo atual: Pausa curta";
+  }
+
+  if (modo === "longo") {
+    pomodoroStatus.textContent = "Modo atual: Pausa longa";
+  }
+
+  modeButtons.forEach(function(button) {
+    button.classList.remove("active");
+
+    if (button.dataset.mode === modo) {
+      button.classList.add("active");
+    }
+  });
+}
+
+modeButtons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    clearInterval(intervaloPomodoro);
+    intervaloPomodoro = null;
+
+    definirModoPomodoro(button.dataset.mode);
+  });
 });

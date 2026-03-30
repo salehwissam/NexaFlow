@@ -23,17 +23,26 @@
     </section>
 
     <section class="card">
-      <h2>Pomodoro</h2>
-      <div class="pomodoro-box">
-        <h3 id="pomodoroTimer">25:00</h3>
+  <h2>Pomodoro</h2>
 
-        <div class="pomodoro-actions">
-          <button id="startPomodoro">Iniciar</button>
-          <button id="pausePomodoro">Pausar</button>
-          <button id="resetPomodoro">Resetar</button>
-        </div>
-      </div>
-    </section>
+  <div class="pomodoro-box">
+    <div class="pomodoro-modes">
+      <button class="mode-btn active" data-mode="foco">Foco</button>
+      <button class="mode-btn" data-mode="curto">Pausa curta</button>
+      <button class="mode-btn" data-mode="longo">Pausa longa</button>
+    </div>
+
+    <p id="pomodoroStatus">Modo atual: Foco</p>
+    <h3 id="pomodoroTimer">25:00</h3>
+    <p id="pomodoroCycles">Ciclos concluídos: 0</p>
+
+    <div class="pomodoro-actions">
+      <button id="startPomodoro">Iniciar</button>
+      <button id="pausePomodoro">Pausar</button>
+      <button id="resetPomodoro">Resetar</button>
+    </div>
+  </div>
+</section>
 
     <section class="card">
       <h2>Metas do dia</h2>
