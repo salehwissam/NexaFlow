@@ -114,9 +114,9 @@ body {
     width: 100%;
   }
 
-  #pomodoroTimer {
-    font-size: 3rem;
-  }
+ #pomodoroTimer {
+  font-size: 3.4rem;
+}
 
   .pomodoro-actions {
     flex-direction: column;
@@ -366,36 +366,43 @@ textarea:focus {
 }
 
 .pomodoro-box {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
   text-align: center;
-  min-height: 220px;
+  min-height: 260px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.10), rgba(37, 99, 235, 0.03));
+  border-radius: 20px;
+  padding: 32px 24px;
+  border: 1px solid rgba(37, 99, 235, 0.12);
 }
 
 #pomodoroTimer {
-  font-size: 4rem;
-  font-weight: 700;
+  font-size: 4.5rem;
+  font-weight: 800;
   color: #2563eb;
-  letter-spacing: 3px;
-  text-shadow: 0 6px 18px rgba(37, 99, 235, 0.18);
+  letter-spacing: 4px;
+  text-shadow: 0 8px 24px rgba(37, 99, 235, 0.20);
 }
 
-.pomodoro-box {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(37, 99, 235, 0.02));
-  border-radius: 18px;
-  padding: 28px 20px;
+.mode-btn.active {
+  background-color: #2563eb;
+  color: white;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.22);
 }
 
 .dark-mode .pomodoro-box {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(59, 130, 246, 0.05));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(59, 130, 246, 0.06));
+  border: 1px solid rgba(96, 165, 250, 0.18);
 }
 
 .dark-mode #pomodoroTimer {
   color: #60a5fa;
-  text-shadow: 0 6px 18px rgba(96, 165, 250, 0.22);
+  text-shadow: 0 8px 24px rgba(96, 165, 250, 0.28);
 }
 
 .dark-mode .pomodoro-actions button {
@@ -438,12 +445,12 @@ textarea:focus {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top, rgba(37, 99, 235, 0.10), transparent 60%);
+  background: radial-gradient(circle at top, rgba(37, 99, 235, 0.14), transparent 60%);
   pointer-events: none;
 }
 
 .dark-mode .pomodoro-box::after {
-  background: radial-gradient(circle at top, rgba(96, 165, 250, 0.14), transparent 60%);
+  background: radial-gradient(circle at top, rgba(96, 165, 250, 0.18), transparent 60%);
 }
 
 .pomodoro-modes {
@@ -454,27 +461,25 @@ textarea:focus {
 }
 
 .mode-btn {
-  padding: 8px 14px;
+  padding: 10px 16px;
   border: none;
   border-radius: 999px;
   background-color: #e5e7eb;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  font-weight: 600;
 }
 
 .mode-btn:hover {
   background-color: #d1d5db;
 }
 
-.mode-btn.active {
-  background-color: #2563eb;
-  color: white;
-}
 
 #pomodoroStatus,
 #pomodoroCycles {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #4b5563;
+  font-weight: 600;
 }
 
 .dark-mode .mode-btn {
@@ -488,6 +493,8 @@ textarea:focus {
 
 .dark-mode .mode-btn.active {
   background-color: #2563eb;
+  color: white;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.22);
 }
 
 .dark-mode #pomodoroStatus,

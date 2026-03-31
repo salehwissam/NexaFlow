@@ -272,6 +272,14 @@ function iniciarPomodoro() {
       if (modoAtual === "foco") {
         ciclosConcluidos++;
         pomodoroCycles.textContent = `Ciclos concluídos: ${ciclosConcluidos}`;
+
+        if (ciclosConcluidos % 4 === 0) {
+          definirModoPomodoro("longo");
+        } else {
+          definirModoPomodoro("curto");
+        }
+      } else {
+        definirModoPomodoro("foco");
       }
     }
   }, 1000);
