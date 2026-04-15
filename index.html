@@ -4,90 +4,123 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NexaFlow</title>
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%232f66f3"/><stop offset="1" stop-color="%231f56e5"/></linearGradient></defs><rect width="64" height="64" rx="18" fill="url(%23g)"/><path d="M18 44V20h6l16 15V20h6v24h-6L24 29v15z" fill="white"/></svg>'>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="page-glow glow-left"></div>
+  <div class="page-glow glow-right"></div>
+
   <header class="topo">
     <div class="topo-texto">
+      <span class="brand-badge">Painel de produtividade</span>
       <h1>NexaFlow</h1>
-      <p>Painel pessoal de foco e produtividade</p>
+      <p>Seu fluxo de produtividade, foco e execução em um só lugar.</p>
     </div>
-    <button class="botao-topo" id="themeToggle">🌙</button>
+
+    <div class="topo-acoes">
+      <button class="botao-topo" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
+    </div>
   </header>
 
   <main class="dashboard">
-  <div class="dashboard-column">
-    <section class="card">
-      <h2>Relógio</h2>
-      <div id="clock" class="clock-box">00:00:00</div>
-    </section>
-
-    <section class="card">
-  <h2>Pomodoro</h2>
-
-  <div class="pomodoro-box">
-    <div class="pomodoro-modes">
-      <button class="mode-btn active" data-mode="foco">Foco</button>
-      <button class="mode-btn" data-mode="curto">Pausa curta</button>
-      <button class="mode-btn" data-mode="longo">Pausa longa</button>
-    </div>
-
-    <p id="pomodoroStatus">Modo atual: Foco</p>
-    <h3 id="pomodoroTimer">25:00</h3>
-    <p id="pomodoroCycles">Ciclos concluídos: 0</p>
-
-    <div class="pomodoro-actions">
-      <button id="startPomodoro">Iniciar</button>
-      <button id="pausePomodoro">Pausar</button>
-      <button id="resetPomodoro">Resetar</button>
-    </div>
-  </div>
-</section>
-
-    <section class="card">
-      <h2>Metas do dia</h2>
-
-      <div class="goal-area">
-        <input type="text" id="goalInput" placeholder="Digite uma meta do dia">
-        <button id="addGoalBtn">Adicionar</button>
-      </div>
-
-      <ul id="goalList"></ul>
-    </section>
-  </div>
-
-  <div class="dashboard-column">
-    <section class="card">
-      <h2>Tarefas</h2>
-      <div class="filters">
-        <button data-filter="todas" class="filter-btn active">Todas</button>
-        <button data-filter="pendentes" class="filter-btn">Pendentes</button>
-        <button data-filter="concluidas" class="filter-btn">Concluídas</button>
-      </div>
-
-      <div class="progress-area">
-        <p id="progressText">0 de 0 tarefas concluídas</p>
-
-        <div class="progress-bar">
-          <div id="progressFill"></div>
+    <div class="dashboard-column dashboard-column-left">
+      <section class="card card-clock">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Agora</span>
+            <h2>Relógio</h2>
+          </div>
         </div>
-      </div>
+        <div id="clock" class="clock-box">00:00:00</div>
+      </section>
 
-      <div class="task-area">
-        <input type="text" id="taskInput" placeholder="Digite uma tarefa">
-        <button id="addTaskBtn">Adicionar</button>
-      </div>
+      <section class="card card-pomodoro">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Destaque</span>
+            <h2>Pomodoro</h2>
+          </div>
+        </div>
 
-      <ul id="taskList"></ul>
-    </section>
+        <div class="pomodoro-box">
+          <div class="pomodoro-modes">
+            <button class="mode-btn active" data-mode="foco">Foco</button>
+            <button class="mode-btn" data-mode="curto">Pausa curta</button>
+            <button class="mode-btn" data-mode="longo">Pausa longa</button>
+          </div>
 
-    <section class="card">
-      <h2>Notas rápidas</h2>
+          <p id="pomodoroStatus">Modo atual: Foco</p>
+          <h3 id="pomodoroTimer">25:00</h3>
+          <p id="pomodoroCycles">Ciclos concluídos: 0</p>
 
-      <textarea id="notesArea" placeholder="Escreva suas anotações aqui..."></textarea>
-    </section>
-  </div>
-</main>
+          <div class="pomodoro-actions">
+            <button id="startPomodoro">Iniciar</button>
+            <button id="pausePomodoro">Pausar</button>
+            <button id="resetPomodoro">Resetar</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="dashboard-column dashboard-column-right">
+      <section class="card card-tasks">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Fluxo</span>
+            <h2>Tarefas</h2>
+          </div>
+        </div>
+
+        <div class="filters">
+          <button data-filter="todas" class="filter-btn active">Todas</button>
+          <button data-filter="pendentes" class="filter-btn">Pendentes</button>
+          <button data-filter="concluidas" class="filter-btn">Concluídas</button>
+        </div>
+
+        <div class="progress-area">
+          <p id="progressText">0 de 0 tarefas concluídas</p>
+          <div class="progress-bar">
+            <div id="progressFill"></div>
+          </div>
+        </div>
+
+        <div class="task-area">
+          <input type="text" id="taskInput" placeholder="Digite uma tarefa">
+          <button id="addTaskBtn">Adicionar</button>
+        </div>
+
+        <ul id="taskList"></ul>
+      </section>
+
+      <section class="card card-notes">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Anotações</span>
+            <h2>Notas rápidas</h2>
+          </div>
+        </div>
+
+        <textarea id="notesArea" placeholder="Escreva suas anotações aqui..."></textarea>
+      </section>
+
+      <section class="card card-goals">
+        <div class="section-head">
+          <div>
+            <span class="section-tag">Metas</span>
+            <h2>Metas do dia</h2>
+          </div>
+        </div>
+
+        <div class="goal-area">
+          <input type="text" id="goalInput" placeholder="Digite uma meta do dia">
+          <button id="addGoalBtn">Adicionar</button>
+        </div>
+
+        <ul id="goalList"></ul>
+      </section>
+    </div>
+  </main>
 
   <script src="script.js"></script>
 </body>

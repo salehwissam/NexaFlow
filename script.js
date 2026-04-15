@@ -39,8 +39,12 @@ let temaSalvo = localStorage.getItem("tema") || "claro";
 if (temaSalvo === "escuro") {
   document.body.classList.add("dark-mode");
   temaBtn.textContent = "☀️";
+  temaBtn.setAttribute("title", "Alternar tema");
+  temaBtn.setAttribute("aria-label", "Alternar tema");
 } else {
   temaBtn.textContent = "🌙";
+  temaBtn.setAttribute("title", "Alternar tema");
+  temaBtn.setAttribute("aria-label", "Alternar tema");
 }
 
 function salvarTarefas() {
@@ -98,6 +102,7 @@ function adicionarTarefa() {
   renderizarTarefas();
 
   taskInput.value = "";
+  taskInput.focus();
 }
 
 addTaskBtn.addEventListener("click", adicionarTarefa);
@@ -194,6 +199,7 @@ function adicionarMeta() {
   renderizarMetas();
 
   goalInput.value = "";
+  goalInput.focus();
 }
 
 addGoalBtn.addEventListener("click", adicionarMeta);
@@ -316,6 +322,9 @@ temaBtn.addEventListener("click", function() {
     localStorage.setItem("tema", "claro");
     temaBtn.textContent = "🌙";
   }
+
+  temaBtn.setAttribute("title", "Alternar tema");
+  temaBtn.setAttribute("aria-label", "Alternar tema");
 });
 
 function definirModoPomodoro(modo) {
